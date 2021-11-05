@@ -1,7 +1,9 @@
 // using local proxy to prevent cors
-// for prod environment change url to http://ws-old.parlament.ch/
+// for prod environment change proxy to http://ws-old.parlament.ch/
 
-const URL = 'http://localhost:8010/proxy/';
+const proxy = 'http://localhost:8010/proxy/';
+
+const URL = `${proxy}councillors?format=json`;
 
 const getCouncillors = async (filter = null) => {
   
@@ -9,7 +11,7 @@ const getCouncillors = async (filter = null) => {
     const filterLower = filter.toLowerCase();
     switch (filterLower) {
       case 'id':
-        const response = await fetch(`${URL}councillors/basicdetails?format=json`)
+        const response = await fetch(URL)
         .then(response => response.json())
         .then(data => {
           return data.sort((a, b) => a.id - b.id);
@@ -17,7 +19,7 @@ const getCouncillors = async (filter = null) => {
         return response;
         break;
       case 'name':
-        await fetch(`${URL}councillors/basicdetails?format=json`)
+        await fetch(URL)
         .then(response => response.json())
         .then(data => {
           let sorted = data.sort((a, b) => {
@@ -35,7 +37,7 @@ const getCouncillors = async (filter = null) => {
         return null;
     }
   } else {
-    await fetch(`${URL}/councillors/basicdetails?format=json`)
+    await fetch(URL)
     .then(response => response.json())
     .then(data => { return data });
   }
