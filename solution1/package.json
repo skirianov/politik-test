@@ -1,0 +1,15 @@
+{
+  "name": "solution1",
+  "version": "1.0.0",
+  "description": "politik.ch solution1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "proxy": "lcp --proxyUrl http://ws-old.parlament.ch"
+  },
+  "author": "Sergii Kirianov",
+  "license": "ISC",
+  "dependencies": {
+    "local-cors-proxy": "^1.1.0"
+  }
+}
