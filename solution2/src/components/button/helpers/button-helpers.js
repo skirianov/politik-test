@@ -1,5 +1,5 @@
 export const getById = async (proxy, data) => {
-  await fetch(`${proxy}${data}?format=json`)
+  return await fetch(`${proxy}${data}?format=json`)
     .then(response => response.json())
     .then(data => {
       let sorted = data.sort((a, b) => a.id - b.id);
@@ -8,7 +8,7 @@ export const getById = async (proxy, data) => {
 };
 
 export const getByName = async (proxy, data, nameType) => {
-  await fetch(`${proxy}${data}?format=json`)
+  return await fetch(`${proxy}${data}?format=json`)
     .then(response => response.json())
     .then(data => {
       let sorted = data.sort((a, b) => {
@@ -24,10 +24,10 @@ export const getByName = async (proxy, data, nameType) => {
 }
 
 export const getByUpdated = async (proxy, data) => {
-  await fetch(`${proxy}${data}?format=json`)
-            .then(response => response.json())
-            .then(data => {
-              let sorted = data.sort((a, b) => a.updated - b.updated);
-              return sorted;
-            })
+  return await fetch(`${proxy}${data}?format=json`)
+    .then(response => response.json())
+    .then(data => {
+      let sorted = data.sort((a, b) => a.updated - b.updated);
+      return sorted;
+    })
 }

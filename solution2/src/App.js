@@ -1,15 +1,15 @@
 import React from 'react';
+import { Box } from '@chakra-ui/react';
 
-import Button from './components/button/Button';
+import ButtonContainer from './components/button-container/ButtonContainer';
+import TableComponent from './components/table/Table';
 
 const App = () => {
-
     return (
-    <div>
-      <Button value="" />
-      <Button value="id" data="cantons" />
-      <Button value="updated" data="affairs/states" /> {/*//Affairs does not provide any Date, so was choosen affair states */}
-    </div>
+    <Box>
+      <ButtonContainer />
+      <TableComponent />
+    </Box>
   )
 }
 
