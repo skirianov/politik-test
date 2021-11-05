@@ -1,5 +1,11 @@
 import React from 'react';
 
+import {
+  getById,
+  getByName,
+  getByUpdated
+} from './helpers/button-helpers';
+
 const Button = ({ value, data }) => {
 
   //for local development environment to prevent cors
@@ -12,38 +18,14 @@ const Button = ({ value, data }) => {
       const filterLower = filter.toLowerCase();
       switch (filterLower) {
         case 'id':
-          await fetch(`${proxy}${data}?format=json`)
-            .then(response => response.json())
-            .then(data => {
-              let sorted = data.sort((a, b) => a.id - b.id);
-              return sorted;
-            });
+          getById(proxy, data);
           break;
         case 'name':
           const nameType = data === 'councillors' ? 'lastName' : 'name';
-
-          await fetch(`${proxy}${data}?format=json`)
-            .then(response => response.json())
-            .then(data => {
-              let sorted = data.sort((a, b) => {
-                if (a[nameType] < b[nameType]) {
-                  return -1;
-                } else if (a[nameType] > b[nameType]) {
-                  return 1;
-                }
-                return 0;
-              });
-              return sorted;
-            });
+          getByName(proxy, data, nameType);          
           break;
         case 'updated': 
-          await fetch(`${proxy}${data}?format=json`)
-            .then(response => response.json())
-            .then(data => {
-              let sorted = data.sort((a, b) => a - b);
-              console.log(sorted);
-              return sorted;
-            })
+          getByUpdated(proxy, data);
           break;
         default:
           return null;
