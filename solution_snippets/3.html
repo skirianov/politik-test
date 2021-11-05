@@ -1,0 +1,28 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const magnitude = (array) => {
+              if (array.length > 0) {
+                const base = 0;
+                const mapped = array.map(each => each * each);
+                const reduced = mapped.reduce((prev, curr) => prev + curr);
+
+                console.log(Math.sqrt(reduced));
+                return Math.sqrt(reduced);
+              }
+
+              return 0;
+            }
+
+            magnitude([3, 4])
+
+            magnitude([0, 0, -10])
+
+            magnitude([])
+
+            magnitude([2, 3, 6, 1, 8] )
+        </script>
+    </body>
+</html>

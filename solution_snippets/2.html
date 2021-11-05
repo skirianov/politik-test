@@ -1,0 +1,20 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script type="text/javascript">
+            document.addEventListener('mousemove', function () {
+                // simulation of non critical taxing task
+                if (typeof mousemove != 'undefined') {
+                  clearTimeout(mousemove);
+                }
+
+                mousemove = setTimeout(() => {
+                  for (let i = 0; i < 9999; i++) {
+                    console.log(i);
+                  }
+                }, 300);
+            });
+        </script>
+    </body>
+</html>
