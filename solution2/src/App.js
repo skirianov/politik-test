@@ -8,7 +8,7 @@ const App = () => {
     <div>
       <Button value="" />
       <Button value="id" data="cantons" />
-      <Button value="name"  />
+      <Button value="updated" data="affairs/states" /> {/*//Affairs does not provide any Date, so was choosen affair states */}
     </div>
   )
 }

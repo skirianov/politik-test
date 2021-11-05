@@ -4,10 +4,10 @@ const Button = ({ value, data }) => {
 
   //for local development environment to prevent cors
   // replace proxy with http://ws-old.parlament.ch/ for prod
-  const proxy = 'http://localhost:8010/proxy/'; 
+  const proxy = 'http://localhost:8010/proxy/';
 
   //if data not provided fetch councillors by default
-  const getCouncillors = async (filter = null, data = 'councillors') => { 
+  const getCouncillors = async (filter = null, data = 'councillors') => {
     if (filter) {
       const filterLower = filter.toLowerCase();
       switch (filterLower) {
@@ -36,6 +36,15 @@ const Button = ({ value, data }) => {
               return sorted;
             });
           break;
+        case 'updated': 
+          await fetch(`${proxy}${data}?format=json`)
+            .then(response => response.json())
+            .then(data => {
+              let sorted = data.sort((a, b) => a - b);
+              console.log(sorted);
+              return sorted;
+            })
+          break;
         default:
           return null;
       }
@@ -47,11 +56,11 @@ const Button = ({ value, data }) => {
   }
 
   return (
-    <button 
+    <button
       value={value}
       onClick={() => getCouncillors(value, data)}
     >
-      Get {data || 'councillors'} {value ? `sorted by ${value}` : null }
+      Get {data || 'councillors'} {value ? `sorted by ${value}` : null}
     </button>
   )
 }
