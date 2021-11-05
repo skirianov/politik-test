@@ -9,12 +9,13 @@ const getCouncillors = async (filter = null) => {
     const filterLower = filter.toLowerCase();
     switch (filterLower) {
       case 'id':
-        await fetch(`${URL}councillors/basicdetails?format=json`)
+        const response = await fetch(`${URL}councillors/basicdetails?format=json`)
         .then(response => response.json())
         .then(data => {
-          let sorted = data.sort((a, b) => a.id - b.id);
-          return sorted;
+          return data.sort((a, b) => a.id - b.id);
         });
+        return response;
+        break;
       case 'name':
         await fetch(`${URL}councillors/basicdetails?format=json`)
         .then(response => response.json())
@@ -29,6 +30,9 @@ const getCouncillors = async (filter = null) => {
           });
           return sorted;
         });
+        break;
+      default:
+        return null;
     }
   } else {
     await fetch(`${URL}/councillors/basicdetails?format=json`)
